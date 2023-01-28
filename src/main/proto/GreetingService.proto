@@ -3,7 +3,6 @@ package com.rost.grpc;
 
 message HelloRequest { //название запроса
   string name = 1; //1 – это ключ (тег), который и будет пересылаться вместо строки "name", которая будет сохранена в нужном месте один единственный раз, а далее – сопоставление.
-
   repeated string hobbies = 2; //List<String>
 }
 
@@ -12,5 +11,5 @@ message HelloResponse {
 }
 
 service GreetingService { //Сервис – это логическое объединение нескольких RPC-методов.
-  rpc greeting(HelloRequest) returns (HelloResponse); //Именно этот метод вызывается на client => сетевой запрос к server => сетевой ответ HelloResponse
+  rpc greeting(HelloRequest) returns (stream HelloResponse); //Именно этот метод вызывается на client => сетевой запрос к server => сетевой ответ HelloResponse
 }
